@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AEAEBank", "AEAEBank\AEAEBank.csproj", "{046ADFDB-66CC-4637-94B0-AFEB1279FFF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AEAEBank.Tests", "AEAEBank.Tests\AEAEBank.Tests.csproj", "{5010C4E1-9A45-4AFB-9543-29FE75A38A05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{046ADFDB-66CC-4637-94B0-AFEB1279FFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046ADFDB-66CC-4637-94B0-AFEB1279FFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046ADFDB-66CC-4637-94B0-AFEB1279FFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046ADFDB-66CC-4637-94B0-AFEB1279FFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5010C4E1-9A45-4AFB-9543-29FE75A38A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5010C4E1-9A45-4AFB-9543-29FE75A38A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5010C4E1-9A45-4AFB-9543-29FE75A38A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5010C4E1-9A45-4AFB-9543-29FE75A38A05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
