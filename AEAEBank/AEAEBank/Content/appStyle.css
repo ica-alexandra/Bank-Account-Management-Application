@@ -1,0 +1,17 @@
+﻿body {
+    background-color: #99afef;
+    color: white;
+    font-family: 'Andika', sans-serif;
+}
+
+.navbar{
+    background-color: #0c1533;
+}
+
+.jumbotron{
+         background-color: #3a0202;
+       }
+      
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
