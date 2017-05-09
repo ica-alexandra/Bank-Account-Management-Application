@@ -203,9 +203,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705031201190_Init.cs" />
-    <Compile Include="Migrations\201705031201190_Init.Designer.cs">
-      <DependentUpon>201705031201190_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201705091200166_initialCreate.cs" />
+    <Compile Include="Migrations\201705091200166_initialCreate.Designer.cs">
+      <DependentUpon>201705091200166_initialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -233,6 +233,10 @@
     <Content Include="Content\Pictures\img1.png" />
     <Content Include="Content\Pictures\img2.jpg" />
     <Content Include="Content\Pictures\img3.jpg" />
+<<<<<<< HEAD
+=======
+    <Content Include="Content\Pictures\logo1.png" />
+>>>>>>> origin/master
     <Content Include="Content\Pictures\man.jpg" />
     <Content Include="Content\Pictures\money-coins.jpg" />
     <Content Include="Content\Pictures\pix.jpg" />
@@ -317,8 +321,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705031201190_Init.resx">
-      <DependentUpon>201705031201190_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705091200166_initialCreate.resx">
+      <DependentUpon>201705091200166_initialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

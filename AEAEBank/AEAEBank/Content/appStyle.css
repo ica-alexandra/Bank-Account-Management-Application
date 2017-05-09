@@ -14,12 +14,20 @@
     background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 46%,#6d0019 54%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #a90329 0%,#8f0222 46%,#6d0019 54%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/master
 }
 
 /*.jumbotron{
          background-color: #3a0202;
        }
+<<<<<<< HEAD
 */
+=======
+*/      
+>>>>>>> origin/master
 .carousel-inner > .item > img {
     margin: 0 auto;
 }
@@ -28,7 +36,11 @@
     color: #fff;
 }
 
+<<<<<<< HEAD
 .nav.navbar-nav a:hover {
+=======
+.nav.navbar-nav a:hover{
+>>>>>>> origin/master
     color: #b1ab06;
     editor /#a90329+0,8f0222+46,6d0019+54 */ background: #a90329; /* Old browsers */
     background: -moz-linear-gradient(top, #a90329 0%, #8f0222 46%, #6d0019 54%); /* FF3.6-15 */
@@ -62,6 +74,7 @@
     }
 
 
+<<<<<<< HEAD
         .sidebar-nav .navbar .navbar-collapse {
             padding: 0;
             max-height: none;
@@ -82,3 +95,25 @@
                 padding-bottom: 12px;
             }
 }
+=======
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+    }
+
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+
+        .sidebar-nav .navbar li a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+}
+>>>>>>> origin/master
