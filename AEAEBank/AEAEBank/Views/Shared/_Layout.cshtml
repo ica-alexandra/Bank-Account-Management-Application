@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/appStyle.css")
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src='@Url.Content("~/Content/Pictures/logo1.png")' height="50"/>
+                </a>
+                    
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Account")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <span class="visible-xs navbar-brand">Sidebar menu</span>
+                            </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">View Account</a></li>
+                                    <li><a href="#">View Application Users</a></li>
+                                    <li><a href="#">View Bank Clients</a></li>
+                                    <li><a href="#">Requests<span class="badge">1,118</span></a></li>
+                                    <!--<li><a href="#">Offers<span class="badge">1,118</span></a></li> -->
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="container body-content">
+                        @RenderBody()
+                        <hr />
+                        <footer>
+                            <p style="text-align:center">&copy; @DateTime.Now.Year -AEAE Bank Account Management Application</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <span class="visible-xs navbar-brand">Sidebar menu</span>
+                            </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">View Account</a></li>
+                                    <li><a href="#">View Transaction Report</a></li>
+                                    <li><a href="#">Make Payments</a></li>
+                                    <li><a href="#">Transfer Money</a></li>
+                                    <!--<li><a href="#">Offers<span class="badge">1,118</span></a></li> -->
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="container body-content">
+                        @RenderBody()
+                        <hr />
+                        <footer>
+                            <p style="text-align:center">&copy; @DateTime.Now.Year -AEAE Bank Account Management Application</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <div class="container">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-9">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p style="text-align:center">&copy; @DateTime.Now.Year -AEAE Bank Account Management Application</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+   
+</body>
+</html>
