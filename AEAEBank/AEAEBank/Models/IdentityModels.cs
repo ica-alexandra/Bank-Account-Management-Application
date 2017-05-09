@@ -15,7 +15,7 @@ namespace AEAEBank.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        public string UserCode { get; set; } 
+        public string UserCode { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -26,7 +26,8 @@ namespace AEAEBank.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         override
-        public string Email { get; set; }
+        public string Email
+        { get; set; }
 
         [Required]
         public int CNP { get; set; }
@@ -43,7 +44,7 @@ namespace AEAEBank.Models
 
         [Required]
         public string Address { get; set; }
-        
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

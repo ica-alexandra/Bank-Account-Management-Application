@@ -1,12 +1,13 @@
 namespace AEAEBank.Migrations
 {
+    using AEAEBank.DAL;
     using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AEAEBank.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -14,7 +15,7 @@ namespace AEAEBank.Migrations
             ContextKey = "AEAEBank.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(AEAEBank.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             this.AddUserAndRoles();
         }

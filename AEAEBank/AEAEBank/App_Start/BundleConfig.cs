@@ -25,9 +25,7 @@ namespace AEAEBank
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/appStyle.css",
-                      "~/Content/parallax.css"));
+                      "~/Content/site.css"));
         }
     }
 }

@@ -198,7 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DAL\ApplicationDatabaseContext.cs" />
+    <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\DataTypes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,10 +233,7 @@
     <Content Include="Content\Pictures\img1.png" />
     <Content Include="Content\Pictures\img2.jpg" />
     <Content Include="Content\Pictures\img3.jpg" />
-<<<<<<< HEAD
-=======
     <Content Include="Content\Pictures\logo1.png" />
->>>>>>> origin/master
     <Content Include="Content\Pictures\man.jpg" />
     <Content Include="Content\Pictures\money-coins.jpg" />
     <Content Include="Content\Pictures\pix.jpg" />
@@ -266,9 +263,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -304,10 +299,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\UserRoles.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRoleEditorViewModel.cshtml" />
     <Content Include="Views\Account\IndexBankClients.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

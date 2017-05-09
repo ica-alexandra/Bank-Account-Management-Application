@@ -7,7 +7,7 @@ using System.Web;
 namespace AEAEBank.Models
 {
     public class BankClient
-    {   
+    {
         [Key]
         public int Id { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<AEAEBank.Models.EditUserViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AdminIndexView";
 }
 
-<h2>Index</h2>
+<h2>AdminIndexView</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserCode)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -23,28 +23,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CNP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IDCardSeries)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IDCardNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelephoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserCode)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -56,24 +41,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CNP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDCardSeries)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDCardNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TelephoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserName }) |
+            @Html.ActionLink("Roles", "UserRoles", new { id = item.UserName }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.UserName })
         </td>
     </tr>
 }
