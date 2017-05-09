@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\ApplicationDatabaseContext.cs" />
     <Compile Include="DAL\DataTypes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +209,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BankClient.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonetaryAccountModel.cs" />
@@ -221,10 +223,22 @@
     <Content Include="Content\appStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\img1.png" />
-    <Content Include="Content\img2.jpg" />
-    <Content Include="Content\img3.jpg" />
     <Content Include="Content\parallax.css" />
+    <Content Include="Content\Pictures\1.jpg" />
+    <Content Include="Content\Pictures\2.jpg" />
+    <Content Include="Content\Pictures\couple.jpg" />
+    <Content Include="Content\Pictures\euro.jpg" />
+    <Content Include="Content\Pictures\happy-gir.jpg" />
+    <Content Include="Content\Pictures\hearts.jpg" />
+    <Content Include="Content\Pictures\img1.png" />
+    <Content Include="Content\Pictures\img2.jpg" />
+    <Content Include="Content\Pictures\img3.jpg" />
+    <Content Include="Content\Pictures\man.jpg" />
+    <Content Include="Content\Pictures\money-coins.jpg" />
+    <Content Include="Content\Pictures\pix.jpg" />
+    <Content Include="Content\Pictures\raining.jpg" />
+    <Content Include="Content\Pictures\wedding-money-poems.jpg" />
+    <Content Include="Content\Pictures\working.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -248,7 +262,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -284,13 +300,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\UserRoles.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRoleEditorViewModel.cshtml" />
+    <Content Include="Views\Account\IndexBankClients.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Pictures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

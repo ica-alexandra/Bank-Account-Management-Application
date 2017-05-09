@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Web.Security;
 using System.Linq;
+using AEAEBank.DAL;
 
 namespace AEAEBank.Models
 {
@@ -14,33 +15,41 @@ namespace AEAEBank.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
+        public string UserCode { get; set; } 
+
+        [Required]
         public string FirstName { get; set; }
 
         [Required]
         public string LastName { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         override
         public string Email { get; set; }
+
+        [Required]
+        public int CNP { get; set; }
+
+        [Required]
+        public string IDCardSeries { get; set; }
+
+        [Required]
+        public int IDCardNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string TelephoneNumber { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
-        }
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
         }
     }
 

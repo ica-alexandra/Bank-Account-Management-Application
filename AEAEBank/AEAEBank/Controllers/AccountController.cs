@@ -12,12 +12,15 @@ using Microsoft.Owin.Security;
 using AEAEBank.Models;
 using System.Collections.Generic;
 using static AEAEBank.Controllers.ManageController;
+using AEAEBank.DAL;
 
 namespace AEAEBank.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext appDb = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -78,7 +81,7 @@ namespace AEAEBank.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserCode, model.Password, true, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -86,7 +89,7 @@ namespace AEAEBank.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -155,6 +158,8 @@ namespace AEAEBank.Controllers
             if (ModelState.IsValid)
             {
                 var user = model.GetUser();
+                user.UserCode = model.FirstName + GetCode() + model.LastName;
+                user.UserName = user.UserCode;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -279,8 +284,7 @@ namespace AEAEBank.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var Db = new ApplicationDbContext();
-            var users = Db.Users;
+            var users = appDb.Users;
             var model = new List<EditUserViewModel>();
             foreach (var user in users)
             {
@@ -291,10 +295,30 @@ namespace AEAEBank.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var user = appDb.Users.Find(id);
+
+            var model = new EditUserViewModel(user);
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult IndexBankClients()
+        {
+            var users = appDb.BankClients;
+            return View(users);
+        }
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id, ManageMessageId? Message = null)
         {
-            var Db = new ApplicationDbContext();
-            var user = Db.Users.First(u => u.UserName == id);
+            var user = appDb.Users.First(u => u.UserName == id);
             var model = new EditUserViewModel(user);
             ViewBag.MessageId = Message;
             return View(model);
@@ -306,14 +330,20 @@ namespace AEAEBank.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Db = new ApplicationDbContext();
-                var user = Db.Users.First(u => u.UserName == model.UserName);
+                var user = appDb.Users.First(u => u.UserCode == model.UserCode);
                 // Update the user data:
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
-                Db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                await Db.SaveChangesAsync();
+                user.UserCode = model.UserCode;
+                user.UserName = model.UserCode;
+                user.IDCardSeries = model.IDCardSeries;
+                user.IDCardNumber = model.IDCardNumber;
+                user.TelephoneNumber = model.TelephoneNumber;
+                user.CNP = model.CNP;
+                user.Address = model.Address;
+                appDb.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                await appDb.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             // If we got this far, something failed, redisplay form
@@ -323,8 +353,7 @@ namespace AEAEBank.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id = null)
         {
-            var Db = new ApplicationDbContext();
-            var user = Db.Users.First(u => u.UserName == id);
+            var user = appDb.Users.First(u => u.UserName == id);
             var model = new EditUserViewModel(user);
             if (user == null)
             {
@@ -339,18 +368,16 @@ namespace AEAEBank.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
-            var Db = new ApplicationDbContext();
-            var user = Db.Users.First(u => u.UserName == id);
-            Db.Users.Remove(user);
-            Db.SaveChanges();
+            var user = appDb.Users.First(u => u.UserName == id);
+            appDb.Users.Remove(user);
+            appDb.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult UserRoles(string id)
         {
-            var Db = new ApplicationDbContext();
-            var user = Db.Users.First(u => u.UserName == id);
+            var user = appDb.Users.First(u => u.UserName == id);
             var model = new SelectUserRolesViewModel(user);
             return View(model);
         }
@@ -364,8 +391,7 @@ namespace AEAEBank.Controllers
             if (ModelState.IsValid)
             {
                 var idManager = new IdentityManager();
-                var Db = new ApplicationDbContext();
-                var user = Db.Users.First(u => u.UserName == model.UserName);
+                var user = appDb.Users.First(u => u.UserName == model.UserName);
                 idManager.ClearUserRoles(user.Id);
                 foreach (var role in model.Roles)
                 {
@@ -533,6 +559,12 @@ namespace AEAEBank.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+
+        private int GetCode()
+        {
+            Random r = new Random();
+            return r.Next(1000,9999);
+        }
 
         private IAuthenticationManager AuthenticationManager
         {

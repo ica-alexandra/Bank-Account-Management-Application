@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using AEAEBank.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -71,28 +72,61 @@ namespace AEAEBank.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        //[EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "User Code")]
+        public string UserCode { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "First name")]
+        [RegularExpression(@"^([a-zA-Z)$", ErrorMessage = "Invalid First Name")]
+        [MaxLength(20, ErrorMessage = "The field must have a maximum of {1} characters")]
+        [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last name")]
+        [RegularExpression(@"^([a-zA-Z)$", ErrorMessage = "Invalid Last Name")]
+        [MaxLength(30, ErrorMessage = "The field must have a maximum of {1} characters")]
+        [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "CNP")]
+        [RegularExpression(@"^([0-9)$", ErrorMessage = "Invalid CNP")]
+        [MaxLength(13, ErrorMessage = "The field must have {1} characters")]
+        [MinLength(13, ErrorMessage = "The field must have {1} characters")]
+        public int CNP { get; set; }
+
+        [Required]
+        [Display(Name = "ID Card series")]
+        [RegularExpression(@"^([A-Z)$", ErrorMessage = "Invalid ID Card Series")]
+        [MaxLength(2, ErrorMessage = "The field must have {1} characters")]
+        [MinLength(2, ErrorMessage = "The field must have {1} characters")]
+        public string IDCardSeries { get; set; }
+
+        [Required]
+        [Display(Name = "ID Card number")]
+        [RegularExpression(@"^([0-9)$", ErrorMessage = "Invalid ID Card number")]
+        [MaxLength(6, ErrorMessage = "The field must have {1} characters")]
+        [MinLength(6, ErrorMessage = "The field must have {1} characters")]
+        public int IDCardNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Telephone number")]
+        [DataType(DataType.PhoneNumber)]
+        public string TelephoneNumber { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
@@ -107,21 +141,25 @@ namespace AEAEBank.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        [Display(Name = "Address")]
+        [MaxLength(50, ErrorMessage = "The field must have {1} characters")]
+        public string Address { get; set; }
 
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        [Display(Name = "Terms and Conditions")]
+        public bool Terms { get; set; } 
 
         public ApplicationUser GetUser()
         {
             var user = new ApplicationUser()
             {
-                UserName = this.UserName,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
+                CNP = this.CNP,
+                IDCardSeries =  this.IDCardSeries,
+                IDCardNumber = this.IDCardNumber,
+                TelephoneNumber = this.TelephoneNumber,
                 Email = this.Email,
+                Address = this.Address,
             };
             return user;
         }
@@ -129,20 +167,26 @@ namespace AEAEBank.Models
 
     public class EditUserViewModel
     {
+        
+
         public EditUserViewModel() { }
 
         // Allow Initialization with an instance of ApplicationUser:
         public EditUserViewModel(ApplicationUser user)
         {
-            this.UserName = user.UserName;
+            this.UserCode = user.UserCode;
+            this.IDCardSeries = user.IDCardSeries;
+            this.IDCardNumber = user.IDCardNumber;
+            this.TelephoneNumber = user.TelephoneNumber;
+            this.CNP = user.CNP;
+            this.Address = user.Address;
             this.FirstName = user.FirstName;
             this.LastName = user.LastName;
             this.Email = user.Email;
         }
 
         [Required]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; }
+        public string UserCode { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
@@ -154,6 +198,22 @@ namespace AEAEBank.Models
 
         [Required]
         public string Email { get; set; }
+
+        [Required]
+        public int CNP { get; set; }
+
+        [Required]
+        public string IDCardSeries { get; set; }
+
+        [Required]
+        public int IDCardNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string TelephoneNumber { get; set; }
+
+        [Required]
+        public string Address { get; set; }
     }
 
 

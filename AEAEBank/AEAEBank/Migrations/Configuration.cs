@@ -33,10 +33,10 @@ namespace AEAEBank.Migrations
 
             var newUser = new ApplicationUser()
             {
-                UserName = "jatten",
-                FirstName = "John",
-                LastName = "Atten",
-                Email = "jatten@typecastexception.com"
+                UserName = "Elena",
+                FirstName = "Emilia",
+                LastName = "Alexandra",
+                Email = "bank@adminemail.com"
             };
 
             // Be careful here - you  will need to use a password which will 
