@@ -15,9 +15,6 @@ namespace AEAEBank.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        public string UserCode { get; set; }
-
-        [Required]
         public string FirstName { get; set; }
 
         [Required]

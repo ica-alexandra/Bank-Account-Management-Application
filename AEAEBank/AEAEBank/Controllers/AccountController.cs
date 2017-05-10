@@ -158,8 +158,7 @@ namespace AEAEBank.Controllers
             if (ModelState.IsValid)
             {
                 var user = model.GetUser();
-                user.UserCode = model.FirstName + GetCode() + model.LastName;
-                user.UserName = user.UserCode;
+                user.UserName = model.FirstName + GetCode() + model.LastName;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -293,9 +292,17 @@ namespace AEAEBank.Controllers
             }
             return View(model);
         }
+        
+        public ActionResult Details()
+        {
+            var user = appDb.Users.First(u => u.UserName == User.Identity.Name);
+
+            var model = new EditUserViewModel(user);
+            return View(model);
+        }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Details(int? id)
+        public ActionResult UserDetails(int? id)
         {
             if (id == null)
             {
@@ -305,18 +312,26 @@ namespace AEAEBank.Controllers
             var user = appDb.Users.Find(id);
 
             var model = new EditUserViewModel(user);
-            return View(model);
+            return View("Details",model);
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult IndexBankClients()
         {
-            var users = appDb.BankClients;
+            var users = appDb.BankClients.ToList();
             return View(users);
         }
 
+        
+        public ActionResult Edit()
+        {
+            var user = appDb.Users.First(u => u.UserName == User.Identity.Name);
+            var model = new EditUserViewModel(user);
+            return View(model);
+        }
+
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(string id, ManageMessageId? Message = null)
+        public ActionResult EditUser(string id, ManageMessageId? Message = null)
         {
             var user = appDb.Users.First(u => u.UserName == id);
             var model = new EditUserViewModel(user);
@@ -326,17 +341,16 @@ namespace AEAEBank.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditUserViewModel model)
+        public async Task<ActionResult> EditUser(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = appDb.Users.First(u => u.UserCode == model.UserCode);
+                var user = appDb.Users.First(u => u.UserName == model.UserName);
                 // Update the user data:
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
-                user.UserCode = model.UserCode;
-                user.UserName = model.UserCode;
+                user.UserName = model.UserName;
                 user.IDCardSeries = model.IDCardSeries;
                 user.IDCardNumber = model.IDCardNumber;
                 user.TelephoneNumber = model.TelephoneNumber;
@@ -373,6 +387,83 @@ namespace AEAEBank.Controllers
             appDb.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult SearchBankClients()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult SearchBankClients(BankClientSearchModel returnedSearchModel)
+        {
+            List<BankClient> bankClients = new List<BankClient>();
+            if (returnedSearchModel.FirstName != null)
+            {
+                bankClients = appDb.BankClients.Where(c => c.FirstName.Contains(returnedSearchModel.FirstName)).ToList();
+            }
+            if (returnedSearchModel.LastName != null)
+            {
+                bankClients.AddRange( appDb.BankClients.Where(c => c.LastName.Contains(returnedSearchModel.LastName)).ToList());
+            }
+            if (returnedSearchModel.CNP != 0)
+            {
+                bankClients.AddRange(appDb.BankClients.Where(c => c.CNP == returnedSearchModel.CNP).ToList());
+            }
+            if (returnedSearchModel.Email != null)
+            {
+                bankClients.AddRange(appDb.BankClients.Where(c => c.Email == returnedSearchModel.Email).ToList());
+            }
+            return View("SearchResultsBankClients", bankClients.Distinct().ToList());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult SearchAppUsers()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult SearchAppUsers(AppUserSearchModel returnedSearchModel)
+        {
+            List<ApplicationUser> appUsers = new List<ApplicationUser>();
+            if (returnedSearchModel.FirstName != null)
+            {
+                appUsers = appDb.Users.Where(c => c.FirstName.Contains(returnedSearchModel.FirstName)).ToList();
+            }
+            if (returnedSearchModel.LastName != null)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.LastName.Contains(returnedSearchModel.LastName)).ToList());
+            }
+            if (returnedSearchModel.CNP != 0)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.CNP == returnedSearchModel.CNP).ToList());
+            }
+            if (returnedSearchModel.Email != null)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.Email == returnedSearchModel.Email).ToList());
+            }
+            if (returnedSearchModel.IDCardSeries != null)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.IDCardSeries == returnedSearchModel.IDCardSeries).ToList());
+            }
+            if (returnedSearchModel.IDCardNumber != 0)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.IDCardNumber == returnedSearchModel.IDCardNumber).ToList());
+            }
+            if (returnedSearchModel.TelephoneNumber != null)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.TelephoneNumber == returnedSearchModel.TelephoneNumber).ToList());
+            }
+            if (returnedSearchModel.Address != null)
+            {
+                appUsers.AddRange(appDb.Users.Where(c => c.Address.Contains(returnedSearchModel.Address)).ToList());
+            }
+            return View("SearchResultsAppUsers", appUsers.Distinct().ToList());
+        }
+
 
         [Authorize(Roles = "Admin")]
         public ActionResult UserRoles(string id)

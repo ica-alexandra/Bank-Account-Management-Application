@@ -174,7 +174,7 @@ namespace AEAEBank.Models
             // Allow Initialization with an instance of ApplicationUser:
             public EditUserViewModel(ApplicationUser user)
             {
-                this.UserCode = user.UserCode;
+                this.UserName = user.UserName;
                 this.IDCardSeries = user.IDCardSeries;
                 this.IDCardNumber = user.IDCardNumber;
                 this.TelephoneNumber = user.TelephoneNumber;
@@ -186,7 +186,7 @@ namespace AEAEBank.Models
             }
 
             [Required]
-            public string UserCode { get; set; }
+            public string UserName { get; set; }
 
             [Required]
             [Display(Name = "First Name")]
