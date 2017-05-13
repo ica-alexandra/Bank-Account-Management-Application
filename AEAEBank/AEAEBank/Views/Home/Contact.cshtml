@@ -4,8 +4,8 @@
 
 @Styles.Render("~/Content/parallax.css")
 
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title</h2>*@
+
 
     <div class="bgimg-1">
         <div class="caption">
@@ -27,11 +27,11 @@
 
     <div class="bgimg-2">
         <div class="caption">
-            <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">Contact us</span>
+            <span class="border" style="background-color:transparent;font-size:25px;color: #111;">Contact us</span>
         </div>
     </div>
     <div style="position:relative;">
-        <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+        <div style="color:#ddd;background-color:#8f0222;text-align:center;padding:50px 80px;text-align: justify;">
             <address>
                 <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
                 <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
@@ -40,6 +40,6 @@
     </div>
     <div class="bgimg-3">
         <div class="caption">
-            <span class="border">@Html.ActionLink("Create Account", "Register", "Account")@*<a href="~/Account/Register.cshtml">Create Account!<a>*@</span>
+            <span class="border">@Html.ActionLink("Create Account", "Register", "Account")</span>
         </div>
     </div>

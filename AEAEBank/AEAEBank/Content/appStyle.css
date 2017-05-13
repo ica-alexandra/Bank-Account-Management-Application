@@ -47,7 +47,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
 
-.btn.myButton a:hover {
+.myButton:hover {
     editor /#a90329+0,8f0222+46,6d0019+54 */ background: #a90329; /* Old browsers */
     background: -moz-linear-gradient(top, #a90329 0%, #8f0222 46%, #6d0019 54%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 46%,#6d0019 54%); /* Chrome10-25,Safari5.1-6 */
@@ -82,4 +82,7 @@
             padding-top: 12px;
             padding-bottom: 12px;
         }
+}
+a.myButton{
+    color:white;
 }
