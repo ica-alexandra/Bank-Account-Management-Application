@@ -15,13 +15,14 @@
 
     <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
         <h3 style="text-align:center;">Address</h3>
-
-        <address>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399<br />
-            <abbr title="Phone">P:</abbr>
-            425.555.0100
-        </address>
+        <p>
+            <address>
+                One Microsoft Way<br />
+                Redmond, WA 98052-6399<br />
+                <abbr title="Phone">P:</abbr>
+                425.555.0100
+            </address>
+        </p>
     </div>
 
     <div class="bgimg-2">
@@ -29,7 +30,6 @@
             <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">Contact us</span>
         </div>
     </div>
-
     <div style="position:relative;">
         <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
             <address>
@@ -38,9 +38,8 @@
             </address>
         </div>
     </div>
-
     <div class="bgimg-3">
         <div class="caption">
-            <span class="border"><a href="olympeaa.html">Create Account!<a></span>
+            <span class="border">@Html.ActionLink("Create Account", "Register", "Account")@*<a href="~/Account/Register.cshtml">Create Account!<a>*@</span>
         </div>
     </div>

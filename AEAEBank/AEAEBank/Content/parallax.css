@@ -8,18 +8,18 @@
 
 }
 .bgimg-1 {
-  background-image: url("~/Content/Pictures/img1.png");
-  min-height: 100%;
+    background-image: url("../Content/Pictures/pix.jpg");
+    min-height: 400px;
 }
 
 .bgimg-2 {
-  background-image: url("~/Content/Pictures/img2.jpg");
-  min-height: 400px;
+    background-image: url("../Content/Pictures/happy-gir.jpg");
+    min-height: 400px;
 }
 
 .bgimg-3 {
-  background-image: url("~/Content/Pictures/img3.jpg");
-  min-height: 400px;
+    background-image: url("../Content/Pictures/raining.jpg");
+    min-height: 400px;
 }
 
 .caption {
