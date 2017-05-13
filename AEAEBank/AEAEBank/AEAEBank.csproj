@@ -204,9 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705091200166_initialCreate.cs" />
-    <Compile Include="Migrations\201705091200166_initialCreate.Designer.cs">
-      <DependentUpon>201705091200166_initialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201705110813264_initcreate.cs" />
+    <Compile Include="Migrations\201705110813264_initcreate.Designer.cs">
+      <DependentUpon>201705110813264_initcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -312,6 +312,7 @@
     <Content Include="Views\Account\SearchResultsBankClients.cshtml" />
     <Content Include="Views\Account\SearchAppUsers.cshtml" />
     <Content Include="Views\Account\SearchResultsAppUsers.cshtml" />
+    <Content Include="Views\Account\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,8 +327,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705091200166_initialCreate.resx">
-      <DependentUpon>201705091200166_initialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705110813264_initcreate.resx">
+      <DependentUpon>201705110813264_initcreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

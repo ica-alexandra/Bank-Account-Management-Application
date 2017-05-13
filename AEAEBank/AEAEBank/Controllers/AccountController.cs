@@ -407,7 +407,7 @@ namespace AEAEBank.Controllers
             {
                 bankClients.AddRange( appDb.BankClients.Where(c => c.LastName.Contains(returnedSearchModel.LastName)).ToList());
             }
-            if (returnedSearchModel.CNP != 0)
+            if (returnedSearchModel.CNP != null)
             {
                 bankClients.AddRange(appDb.BankClients.Where(c => c.CNP == returnedSearchModel.CNP).ToList());
             }
@@ -437,7 +437,7 @@ namespace AEAEBank.Controllers
             {
                 appUsers.AddRange(appDb.Users.Where(c => c.LastName.Contains(returnedSearchModel.LastName)).ToList());
             }
-            if (returnedSearchModel.CNP != 0)
+            if (returnedSearchModel.CNP != null)
             {
                 appUsers.AddRange(appDb.Users.Where(c => c.CNP == returnedSearchModel.CNP).ToList());
             }
@@ -449,7 +449,7 @@ namespace AEAEBank.Controllers
             {
                 appUsers.AddRange(appDb.Users.Where(c => c.IDCardSeries == returnedSearchModel.IDCardSeries).ToList());
             }
-            if (returnedSearchModel.IDCardNumber != 0)
+            if (returnedSearchModel.IDCardNumber != null)
             {
                 appUsers.AddRange(appDb.Users.Where(c => c.IDCardNumber == returnedSearchModel.IDCardNumber).ToList());
             }

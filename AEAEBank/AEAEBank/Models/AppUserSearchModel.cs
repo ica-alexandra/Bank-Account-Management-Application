@@ -15,11 +15,11 @@ namespace AEAEBank.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         
-        public int CNP { get; set; }
+        public string CNP { get; set; }
         
         public string IDCardSeries { get; set; }
         
-        public int IDCardNumber { get; set; }
+        public string IDCardNumber { get; set; }
         
         [DataType(DataType.PhoneNumber)]
         public string TelephoneNumber { get; set; }

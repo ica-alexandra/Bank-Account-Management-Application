@@ -15,6 +15,6 @@ namespace AEAEBank.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public int CNP { get; set; }
+        public string CNP { get; set; }
     }
 }

@@ -85,38 +85,38 @@ namespace AEAEBank.Models
         {
             [Required]
             [Display(Name = "First name")]
-            [RegularExpression(@"^([a-zA-Z)$", ErrorMessage = "Invalid First Name")]
+            //[RegularExpression(@"^([a-zA-Z])$", ErrorMessage = "Invalid First Name")]
             [MaxLength(20, ErrorMessage = "The field must have a maximum of {1} characters")]
             [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last name")]
-            [RegularExpression(@"^([a-zA-Z)$", ErrorMessage = "Invalid Last Name")]
+            //[RegularExpression(@"^([a-zA-Z])$", ErrorMessage = "Invalid Last Name")]
             [MaxLength(30, ErrorMessage = "The field must have a maximum of {1} characters")]
             [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
             public string LastName { get; set; }
 
             [Required]
             [Display(Name = "CNP")]
-            [RegularExpression(@"^([0-9)$", ErrorMessage = "Invalid CNP")]
+            //[RegularExpression(@"^([0-9])$", ErrorMessage = "Invalid CNP")]
             [MaxLength(13, ErrorMessage = "The field must have {1} characters")]
             [MinLength(13, ErrorMessage = "The field must have {1} characters")]
-            public int CNP { get; set; }
+            public string CNP { get; set; }
 
             [Required]
             [Display(Name = "ID Card series")]
-            [RegularExpression(@"^([A-Z)$", ErrorMessage = "Invalid ID Card Series")]
+            //[RegularExpression(@"^([A-Z])$", ErrorMessage = "Invalid ID Card Series")]
             [MaxLength(2, ErrorMessage = "The field must have {1} characters")]
             [MinLength(2, ErrorMessage = "The field must have {1} characters")]
             public string IDCardSeries { get; set; }
 
             [Required]
             [Display(Name = "ID Card number")]
-            [RegularExpression(@"^([0-9)$", ErrorMessage = "Invalid ID Card number")]
+            //[RegularExpression(@"^([0-9])$", ErrorMessage = "Invalid ID Card number")]
             [MaxLength(6, ErrorMessage = "The field must have {1} characters")]
             [MinLength(6, ErrorMessage = "The field must have {1} characters")]
-            public int IDCardNumber { get; set; }
+            public string IDCardNumber { get; set; }
 
             [Required]
             [Display(Name = "Telephone number")]
@@ -200,13 +200,13 @@ namespace AEAEBank.Models
             public string Email { get; set; }
 
             [Required]
-            public int CNP { get; set; }
+            public string CNP { get; set; }
 
             [Required]
             public string IDCardSeries { get; set; }
 
             [Required]
-            public int IDCardNumber { get; set; }
+            public string IDCardNumber { get; set; }
 
             [Required]
             [DataType(DataType.PhoneNumber)]

@@ -22,6 +22,6 @@ namespace AEAEBank.Models
         public string Email { get; set; }
 
         [Required]
-        public int CNP { get; set; }
+        public string CNP { get; set; }
     }
 }

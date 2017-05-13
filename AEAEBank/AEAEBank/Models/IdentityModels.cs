@@ -27,13 +27,13 @@ namespace AEAEBank.Models
         { get; set; }
 
         [Required]
-        public int CNP { get; set; }
+        public string CNP { get; set; }
 
         [Required]
         public string IDCardSeries { get; set; }
 
         [Required]
-        public int IDCardNumber { get; set; }
+        public string IDCardNumber { get; set; }
 
         [Required]
         [DataType(DataType.PhoneNumber)]

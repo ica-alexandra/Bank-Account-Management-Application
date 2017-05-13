@@ -34,10 +34,15 @@ namespace AEAEBank.Migrations
 
             var newUser = new ApplicationUser()
             {
-                UserName = "Elena",
+                UserName = "Elena1920Emilia",
                 FirstName = "Emilia",
                 LastName = "Alexandra",
-                Email = "bank@adminemail.com"
+                Email = "bank@adminemail.com",
+                CNP = "2950516160027",
+                IDCardSeries = "DX",
+                IDCardNumber = "345678",
+                TelephoneNumber = "0769450266",
+                Address = "str. mihaita nr. 14",
             };
 
             // Be careful here - you  will need to use a password which will 
