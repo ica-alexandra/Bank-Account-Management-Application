@@ -12,6 +12,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using AEAEBank.Models;
 using AEAEBank.DAL;
+using System.Net.Mail;
+using System.Net.Configuration;
+using System.Web.Configuration;
 
 namespace AEAEBank
 {
@@ -19,8 +22,16 @@ namespace AEAEBank
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
+            SmtpClient smtp = new SmtpClient();
+
+            smtp.Send(GetWebConfigEmailAddress(), message.Destination, message.Subject, message.Body);
             return Task.FromResult(0);
+        }
+
+        public string GetWebConfigEmailAddress()
+        {
+            MailSettingsSectionGroup mailSettings = WebConfigurationManager.OpenWebConfiguration("~").GetSectionGroup("system.net/mailSettings") as MailSettingsSectionGroup;
+            return mailSettings.Smtp.Network.UserName;
         }
     }
 

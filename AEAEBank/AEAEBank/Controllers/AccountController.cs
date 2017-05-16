@@ -79,8 +79,15 @@ namespace AEAEBank.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var user = await UserManager.FindByNameAsync(model.UserCode);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    ViewBag.errorMessage = "You must have a confirmed email to log on.";
+                    return View("Error");
+                }
+            }
             var result = await SignInManager.PasswordSignInAsync(model.UserCode, model.Password, true, shouldLockout: false);
             switch (result)
             {
@@ -163,15 +170,14 @@ namespace AEAEBank.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    string callbackUrl = await SendEmailConfirmationToken(user.Id, "Confirm Account");
+                    return View("ConfirmEmailRegister");
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);
             }
@@ -180,6 +186,13 @@ namespace AEAEBank.Controllers
             return View(model);
         }
 
+        public async Task<string> SendEmailConfirmationToken(string UserID, string subject)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(UserID);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = UserID, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(UserID, subject, "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            return callbackUrl;
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

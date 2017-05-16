@@ -313,6 +313,7 @@
     <Content Include="Views\Account\SearchAppUsers.cshtml" />
     <Content Include="Views\Account\SearchResultsAppUsers.cshtml" />
     <Content Include="Views\Account\View.cshtml" />
+    <Content Include="Views\Account\ConfirmEmailRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
