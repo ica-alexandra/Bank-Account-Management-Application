@@ -3,7 +3,7 @@ namespace AEAEBank.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initcreate : DbMigration
+    public partial class initialcreate : DbMigration
     {
         public override void Up()
         {

@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>MonetaryAccountModel</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -45,11 +45,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Block", "EditStatus", new { id = Model.Id, status = true})
+    @Html.ActionLink("Block", "EditStatus", new { id = Model.Id, status = true}, new { @class = "btn myButton" })
+
+    @Html.ActionLink("Activate", "EditStatus", new { id = Model.Id, status = false }, new { @class = "btn myButton" })
 </p>
 <p>
-    @Html.ActionLink("UnBlock", "EditStatus", new { id = Model.Id, status = false })
-</p>
-<p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Details", "Account")
 </p>

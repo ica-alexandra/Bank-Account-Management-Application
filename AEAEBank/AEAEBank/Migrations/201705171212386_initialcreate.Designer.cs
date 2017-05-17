@@ -7,13 +7,13 @@ namespace AEAEBank.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initcreate : IMigrationMetadata
+    public sealed partial class initialcreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initcreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialcreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705110813264_initcreate"; }
+            get { return "201705171212386_initialcreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Account Details</h2>
 
 <div>
-    <h4>EditUserViewModel</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -84,51 +84,58 @@
 
     </dl>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MonetaryAccounts.First().IBAN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Currency)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Blocked)
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model.MonetaryAccounts)
-    {
+
+@if (User.IsInRole("User"))
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IBAN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Currency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Blocked)
-            </td>
-            <td>
-                @Html.ActionLink("View Details", "Details", "MonetaryAccount", new { id = item.Id }, null)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonetaryAccounts.First().IBAN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonetaryAccounts.First().Blocked)
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { @class= "btn myButton" }) |
-        @Html.ActionLink("Add Monetary Account", "Create", "MonetaryAccount") |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+        @foreach (var item in Model.MonetaryAccounts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IBAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blocked)
+                </td>
+                <td>
+                    @Html.ActionLink("View Details", "Details", "MonetaryAccount", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "MonetaryAccount", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { @class = "btn myButton" }) |
+            @Html.ActionLink("Add Monetary Account", "Create", "MonetaryAccount") 
+          
+        </p>
+}

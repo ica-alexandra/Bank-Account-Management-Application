@@ -21,6 +21,7 @@ namespace AEAEBank.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IdentityManager idManager = new IdentityManager();
 
         public AccountController()
         {
@@ -166,6 +167,8 @@ namespace AEAEBank.Controllers
                 user.UserName = model.FirstName + GetCode() + model.LastName;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
+                idManager.AddUserToRole(user.Id, "User");
                 if (result.Succeeded)
                 {
                     string callbackUrl = await SendEmailConfirmationToken(user.Id, "Confirm Account");

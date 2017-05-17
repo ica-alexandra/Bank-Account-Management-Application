@@ -29,6 +29,10 @@
     color: #fff;
 }
 
+.nav.navbar-nav li a:hover {
+    color: #b1ab06;
+}
+
 .nav.navbar-nav a:hover{
     color: #b1ab06;
     editor /#a90329+0,8f0222+46,6d0019+54 */ background: #a90329; /* Old browsers */
@@ -86,3 +90,23 @@
 a.myButton{
     color:white;
 }
+
+.table{
+    background-color: #c26767;
+    color: black;
+}
+
+.table td a:link {
+    color: darkgray;
+}
+
+.table td a:visited {
+    color: darkgray;
+    text-decoration: none;
+}
+
+.table td a:hover {
+    color: white;
+    text-decoration: none;
+}
+
