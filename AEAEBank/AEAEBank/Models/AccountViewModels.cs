@@ -214,6 +214,8 @@ namespace AEAEBank.Models
 
             [Required]
             public string Address { get; set; }
+            
+            public List<MonetaryAccountModel> MonetaryAccounts { get; set; }
         }
 
 

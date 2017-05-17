@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -13,6 +10,7 @@ using AEAEBank.Models;
 using System.Collections.Generic;
 using static AEAEBank.Controllers.ManageController;
 using AEAEBank.DAL;
+using System.Security.Claims;
 
 namespace AEAEBank.Controllers
 {
@@ -308,9 +306,27 @@ namespace AEAEBank.Controllers
         
         public ActionResult Details()
         {
-            var user = appDb.Users.First(u => u.UserName == User.Identity.Name);
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string userIdValue = null;
+            if (claimsIdentity != null)
+            {
+                // the principal identity is a claims identity.
+                // now we need to find the NameIdentifier claim
+                var userIdClaim = claimsIdentity.Claims
+                    .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+
+                if (userIdClaim != null)
+                {
+                    userIdValue = userIdClaim.Value;
+                }
+            }
+
+
+
+           var user = appDb.Users.First(u => u.Id == userIdValue);
 
             var model = new EditUserViewModel(user);
+            model.MonetaryAccounts = appDb.MonetaryAccount.Where(m => m.UserId == user.Id).ToList();
             return View(model);
         }
 

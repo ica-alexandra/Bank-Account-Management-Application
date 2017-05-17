@@ -9,6 +9,8 @@ namespace AEAEBank.Models
 {
     public class MonetaryAccountModel
     {
+        public MonetaryAccountModel() { }
+
         [Key]
         public int Id { get; set; }
 

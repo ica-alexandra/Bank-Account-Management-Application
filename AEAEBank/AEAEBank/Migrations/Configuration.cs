@@ -48,11 +48,15 @@ namespace AEAEBank.Migrations
             // Be careful here - you  will need to use a password which will 
             // be valid under the password rules for the application, 
             // or the process will abort:
+            newUser.EmailConfirmed = true;
+
             success = idManager.CreateUser(newUser, "Alex_12");
             if (!success) return success;
 
             success = idManager.AddUserToRole(newUser.Id, "Admin");
             if (!success) return success;
+
+            
 
             return success;
         }
