@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AEAEBank.Models
 {
     public class TransferViewModel
     {
+        public TransferViewModel() { }
+
+
+        public int SelectedValue { get; set; }
+
+        public SelectList MonetaryAccounts { get; set; }
 
         [Required]
         [Display(Name = "My Account(IBAN)")]
@@ -19,7 +26,7 @@ namespace AEAEBank.Models
 
         [Required]
         [Display(Name = "Transfer Amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [Required]
         [Display(Name = "IBAN Beneficiary")]

@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AEAEBank.Models
 {
     public class PaymentViewModel
     {
-        [Required]
-        [Display(Name = "Company")]
-        public string CompanyName { get; set; }
+        public PaymentViewModel() { }
+        
+        public int CompanySelectedValue { get; set; }
 
-        [Required]
+        [Display(Name = "Company")]
+        public SelectList CompanyList { get; set; }
+
+        public int MAccountsSelectedValue { get; set; }
+
+        [Display(Name = "My Account")]
+        public SelectList MonetaryAccounts { get; set; }
+
         [Display(Name = "My Account(IBAN)")]
         public string AccountIBAN { get; set; }
 
@@ -22,7 +30,7 @@ namespace AEAEBank.Models
 
         [Required]
         [Display(Name = "Payment Amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [Required]
         [Display(Name = "IBAN Beneficiary")]
@@ -35,8 +43,7 @@ namespace AEAEBank.Models
         [Required]
         [Display(Name = "Beneficiary Bank Name")]
         public string BeneficiaryBankName { get; set; }
-
-        [Required]
+        
         [Display(Name = "Invoice Number(Bill Code)")]
         public string Invoice { get; set; }
     }

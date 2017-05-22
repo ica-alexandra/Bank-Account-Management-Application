@@ -409,7 +409,6 @@ C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEA
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csprojResolveAssemblyReference.cache
-C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initcreate.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.dll
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.pdb
@@ -499,3 +498,4 @@ C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initialcrea
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.dll
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.pdb
+C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initialcreate.resources

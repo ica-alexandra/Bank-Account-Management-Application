@@ -213,11 +213,13 @@
     <Compile Include="Models\AppUserSearchModel.cs" />
     <Compile Include="Models\BankClient.cs" />
     <Compile Include="Models\BankClientSearchModel.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonetaryAccountModel.cs" />
     <Compile Include="Models\PaymentViewModel.cs" />
     <Compile Include="Models\TransactionModel.cs" />
+    <Compile Include="Models\TransactionReportViewModel.cs" />
     <Compile Include="Models\TransferViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -317,6 +319,9 @@
     <Content Include="Views\MonetaryAccount\Details.cshtml" />
     <Content Include="Views\MonetaryAccount\Create.cshtml" />
     <Content Include="Views\MonetaryAccount\Delete.cshtml" />
+    <Content Include="Views\MonetaryAccount\Payment.cshtml" />
+    <Content Include="Views\MonetaryAccount\Transfer.cshtml" />
+    <Content Include="Views\MonetaryAccount\ViewTransactions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

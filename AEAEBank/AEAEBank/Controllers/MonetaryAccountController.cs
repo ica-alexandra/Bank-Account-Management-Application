@@ -85,7 +85,67 @@ namespace AEAEBank.Controllers
 
         public ActionResult Payment()
         {
-            return View();
+            //temp
+            List<Company> comp = new List<Company>();
+            comp.Add(new Company("Orange", "1234", "John", "IGN"));
+            //end temp
+            string userCode = User.Identity.Name;
+            PaymentViewModel pModel = new PaymentViewModel();
+            pModel.CompanyList = new SelectList(comp);
+            pModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
+            return View(pModel);
+        }
+
+        [HttpPost]
+        public ActionResult Payment(PaymentViewModel payment)
+        {
+            TransactionModel tModel = new TransactionModel();
+            tModel.DestinationIBAN = payment.BeneficiaryIBAN;
+            tModel.Amount = payment.Amount;
+            tModel.SourceIBAN = payment.AccountIBAN;
+            tModel.Status = TransactionStatus.Pending;
+            tModel.TType = TransactionType.Withdrawal;
+            tModel.TransactionDate = DateTime.Now;
+
+            appDb.Transaction.Add(tModel);
+            appDb.SaveChanges();
+
+            return RedirectToAction("ViewTransaction");
+        }
+
+        public ActionResult Transfer()
+        {
+            TransferViewModel tModel = new TransferViewModel();
+            string userCode = User.Identity.Name;
+            tModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
+
+            return View(tModel);
+        }
+
+        [HttpPost]
+        public ActionResult Transfer(TransferViewModel transferModel)
+        {
+            TransactionModel tModel = new TransactionModel();
+            tModel.Amount = transferModel.Amount;
+            tModel.DestinationIBAN = transferModel.BeneficiaryIBAN;
+            tModel.SourceIBAN = transferModel.AccountIBAN;
+            tModel.Status = TransactionStatus.Pending;
+            tModel.TransactionDate = DateTime.Now;
+            tModel.TType = TransactionType.Withdrawal;
+
+            appDb.Transaction.Add(tModel);
+            appDb.SaveChanges();
+
+            return RedirectToAction("ViewTransactions");
+        }
+
+        public ActionResult ViewTransactions()
+        {
+            TransactionReportViewModel TRModel = new TransactionReportViewModel();
+            string userCode = User.Identity.Name;
+            TRModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
+
+            return View(TRModel);
         }
     }
 }

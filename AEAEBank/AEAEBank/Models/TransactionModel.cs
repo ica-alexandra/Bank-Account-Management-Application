@@ -9,6 +9,8 @@ namespace AEAEBank.Models
 {
     public class TransactionModel
     {
+        public TransactionModel() { }
+
         [Key]
         public int Id { get; set; }
 
@@ -26,6 +28,8 @@ namespace AEAEBank.Models
         [Display(Name = "Transaction Type")]
         public TransactionType TType { get; set; }
 
+        [DataType(DataType.DateTime)]
+        public DateTime TransactionDate { get; set; }
 
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }

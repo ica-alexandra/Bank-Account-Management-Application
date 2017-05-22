@@ -44,8 +44,8 @@ namespace AEAEBank.Models
         public class ForgotViewModel
         {
             [Required]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "User Name")]
+            public string UserName { get; set; }
         }
 
         public class ManageUserViewModel
@@ -85,35 +85,35 @@ namespace AEAEBank.Models
         {
             [Required]
             [Display(Name = "First name")]
-            //[RegularExpression(@"^([a-zA-Z])$", ErrorMessage = "Invalid First Name")]
+            [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Letters only")]
             [MaxLength(20, ErrorMessage = "The field must have a maximum of {1} characters")]
             [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last name")]
-            //[RegularExpression(@"^([a-zA-Z])$", ErrorMessage = "Invalid Last Name")]
+            [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Letters only")]
             [MaxLength(30, ErrorMessage = "The field must have a maximum of {1} characters")]
             [MinLength(3, ErrorMessage = "The field must have a minimum of {1} characters")]
             public string LastName { get; set; }
 
             [Required]
             [Display(Name = "CNP")]
-            //[RegularExpression(@"^([0-9])$", ErrorMessage = "Invalid CNP")]
+            [RegularExpression(@"^[0-9]+$", ErrorMessage = "Numbers only")]
             [MaxLength(13, ErrorMessage = "The field must have {1} characters")]
             [MinLength(13, ErrorMessage = "The field must have {1} characters")]
             public string CNP { get; set; }
 
             [Required]
             [Display(Name = "ID Card series")]
-            //[RegularExpression(@"^([A-Z])$", ErrorMessage = "Invalid ID Card Series")]
+            [RegularExpression(@"^[A-Z]+$", ErrorMessage = "Capital Letters only")]
             [MaxLength(2, ErrorMessage = "The field must have {1} characters")]
             [MinLength(2, ErrorMessage = "The field must have {1} characters")]
             public string IDCardSeries { get; set; }
 
             [Required]
             [Display(Name = "ID Card number")]
-            //[RegularExpression(@"^([0-9])$", ErrorMessage = "Invalid ID Card number")]
+            [RegularExpression(@"^[0-9]+$", ErrorMessage = "Numbers only")]
             [MaxLength(6, ErrorMessage = "The field must have {1} characters")]
             [MinLength(6, ErrorMessage = "The field must have {1} characters")]
             public string IDCardNumber { get; set; }
@@ -280,9 +280,8 @@ namespace AEAEBank.Models
         public class ResetPasswordViewModel
         {
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "User Code")]
+            public string UserCode { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -301,9 +300,8 @@ namespace AEAEBank.Models
         public class ForgotPasswordViewModel
         {
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "User Code")]
+            public string UserCode { get; set; }
         }
  }
 
