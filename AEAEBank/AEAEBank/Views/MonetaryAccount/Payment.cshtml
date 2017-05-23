@@ -3,29 +3,85 @@
 @{
     ViewBag.Title = "Payment";
 }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MonetaryAccounts').change(function () {
+
+                if ($("#MonetaryAccounts").val() != "Select") {
+                    var AccountOptions = {};
+                    AccountOptions.url = "/MonetaryAccount/GetAccountData";
+                    AccountOptions.type = "POST";
+                    AccountOptions.data = JSON.stringify({ accountId: $("#MonetaryAccounts").val() });
+                    AccountOptions.datatype = "json";
+                    AccountOptions.contentType = "application/json";
+                    AccountOptions.success = function (account) {
+                        
+                        $('#AccountIBAN').val(account.AccountIban);
+                        //$("#CompanyName").append("<option>" + "ana" + "</option>");
+
+                    };
+                    AccountOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(AccountOptions);
+                }
+            });
+
+            $('#CompanyList').change(function () {
+                
+                if ($("#CompanyList").val() != "Select") {
+                    var CompanyOptions = {};
+                    CompanyOptions.url = "/MonetaryAccount/GetCompanyData";
+                    CompanyOptions.type = "POST";
+                    CompanyOptions.data = JSON.stringify({ companyID: $("#CompanyList").val() });
+                    CompanyOptions.datatype = "json";
+                    CompanyOptions.contentType = "application/json";
+                    CompanyOptions.success = function (company) {
+                        $("#CompanyName").empty();
+                        $('#CompanyName').val(company.companyName);
+                        $('#IBAN').val(company.iban);
+                        //$("#CompanyName").append("<option>" + "ana" + "</option>");
+                        
+                    };
+                    CompanyOptions.error = function () { alert("Error in Getting States!!"); };
+                    $.ajax(CompanyOptions);
+                }
+            });
+       });
+</script>
+
 
 <h2>Payment</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
+
+    
     <div class="form-horizontal">
+
         <h4>PaymentViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Companies, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CompanyList, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Companies, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Companies, "", new { @class = "text-danger" })
+                @Html.DropDownList("CompanyList", ViewData["companies"] as SelectList, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.AccountIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AccountIBAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextArea("CompanyName", null, new { @readOnly = "readonly" })
+                @*@Html.ValidationMessageFor(model => model.AccountIBAN, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("IBAN", null, new { @readOnly = "readonly" })
                 @Html.ValidationMessageFor(model => model.AccountIBAN, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +89,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.DropDownList("MonetaryAccounts", ViewData["accounts"] as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +97,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextArea("AccountIBAN", null, new { @readOnly = "readonly" })
                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
             </div>
         </div>

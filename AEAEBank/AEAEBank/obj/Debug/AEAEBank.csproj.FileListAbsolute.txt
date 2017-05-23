@@ -327,8 +327,6 @@ C:\Users\Alexandra\Desktop\AEEABank\AEAEBank\AEAEBank\bin\Microsoft.Owin.Securit
 C:\Users\Alexandra\Desktop\AEEABank\AEAEBank\AEAEBank\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Alexandra\Desktop\AEEABank\AEAEBank\AEAEBank\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Alexandra\Desktop\AEEABank\AEAEBank\AEAEBank\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initcreate.resources
-C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\bin\ApplicationInsights.config
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\bin\roslyn\csc.exe
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -499,3 +497,5 @@ C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResourc
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.dll
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.pdb
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initialcreate.resources
+C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.companyCreate.resources
+C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache

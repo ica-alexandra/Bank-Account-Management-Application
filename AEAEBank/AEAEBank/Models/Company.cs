@@ -9,13 +9,18 @@ namespace AEAEBank.Models
     public class Company
     {
         public Company() { }
-        public Company(string CompanyName, string BeneficiaryIBAN, string BeneficiaryName, string BeneficiaryBankName)
+        public Company(int Id, string CompanyName, string BeneficiaryIBAN, string BeneficiaryName, string BeneficiaryBankName)
         {
+            this.Id = Id;
             this.CompanyName = CompanyName;
             this.BeneficiaryIBAN = BeneficiaryIBAN;
             this.BeneficiaryName = BeneficiaryName;
             this.BeneficiaryBankName = BeneficiaryBankName;
         }
+
+        [Key]
+        public int Id { get; set; }
+
         [Display(Name = "Company Nanme")]
         public string CompanyName { get; set; }
         

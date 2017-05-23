@@ -329,7 +329,7 @@ namespace AEAEBank.Controllers
            var user = appDb.Users.First(u => u.Id == userIdValue);
 
             var model = new EditUserViewModel(user);
-            model.MonetaryAccounts = appDb.MonetaryAccount.Where(m => m.UserId == user.Id).ToList();
+            model.MonetaryAccounts = appDb.MonetaryAccount.Where(m => m.UserId == user.UserName).ToList();
             return View(model);
         }
 
@@ -679,15 +679,15 @@ namespace AEAEBank.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
-
         private int GetCode()
         {
             Random r = new Random();
             return r.Next(1000, 9999);
         }
+
+        #region Helpers
+        // Used for XSRF protection when adding external logins
+        private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

@@ -50,8 +50,8 @@ namespace AEAEBank.Controllers
         public ActionResult Create(MonetaryAccountModel mAccount)
         {
             mAccount.Amount = 0;
-            mAccount.UserId = User.Identity.GetUserId();
-            mAccount.IBAN = mAccount.UserId + "34";
+            mAccount.UserId = User.Identity.Name;
+            mAccount.IBAN = "RO78INGB00009999" + GetCode() + GetCode();
 
             appDb.MonetaryAccount.Add(mAccount);
             appDb.SaveChanges();
@@ -87,12 +87,22 @@ namespace AEAEBank.Controllers
         {
             //temp
             List<Company> comp = new List<Company>();
-            comp.Add(new Company("Orange", "1234", "John", "IGN"));
+            comp.Add(new Company(1,"Orange", "1234", "Orange", "ING"));
+            comp.Add(new Company(2, "CEZ", "76543218910", "CEZOltenia", "ING"));
             //end temp
+
             string userCode = User.Identity.Name;
+            List<MonetaryAccountModel> mList = appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList();
             PaymentViewModel pModel = new PaymentViewModel();
-            pModel.CompanyList = new SelectList(comp);
-            pModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
+            pModel.CompanyList = new SelectList(comp, "Id", "CompanyName");
+            pModel.CompanyIndex = Convert.ToInt32(pModel.CompanyList.First().Value);
+            pModel.MonetaryAccounts = new SelectList(mList, "Id", "IBAN");
+            pModel.MonetaryAccountIndex = Convert.ToInt32(pModel.MonetaryAccounts.FirstOrDefault().Value);
+            //var str = pModel.CompanyList.ElementAt(pModel.CompanyIndex).Value;
+            //pModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
+            
+            ViewData["companies"] = comp;
+            ViewData["accounts"] = mList;
             return View(pModel);
         }
 
@@ -146,6 +156,45 @@ namespace AEAEBank.Controllers
             TRModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList());
 
             return View(TRModel);
+        }
+
+        [HttpPost]
+        public ActionResult GetCompanyData(string companyID)
+        {
+            //temp
+            List<Company> cmpList = new List<Company>();
+            cmpList.Add(new Company(1, "Orange", "12345678910", "Orange", "ING"));
+            cmpList.Add(new Company(2, "CEZ", "76543218910", "CEZOltenia", "ING"));
+            //end temp
+            Company cmp = cmpList.First(c => c.Id == Convert.ToInt32(companyID));
+            if (cmp != null)
+            {
+                return Json(new { success = true, companyName = cmp.CompanyName , iban = cmp.BeneficiaryIBAN});
+            }
+         return Json(new { success = false });
+
+        }
+
+        [HttpPost]
+        public ActionResult GetAccountData(string accountId)
+        {
+            
+            List<MonetaryAccountModel> accList = new List<MonetaryAccountModel>();
+            accList = appDb.MonetaryAccount.Where(m => m.UserId == User.Identity.Name).ToList();
+
+            MonetaryAccountModel acc = accList.First(m => m.Id == Convert.ToInt32(accountId));
+            if (acc != null)
+            {
+                return Json(new { success = true, AccountIban = acc.IBAN });
+            }
+            return Json(new { success = false });
+
+        }
+
+        private int GetCode()
+        {
+            Random r = new Random();
+            return r.Next(1000, 9999);
         }
     }
 }

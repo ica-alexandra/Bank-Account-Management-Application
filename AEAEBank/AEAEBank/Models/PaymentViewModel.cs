@@ -10,13 +10,13 @@ namespace AEAEBank.Models
     public class PaymentViewModel
     {
         public PaymentViewModel() { }
-        
-        public int CompanySelectedValue { get; set; }
+
+        public int CompanyIndex { get; set; }
 
         [Display(Name = "Company")]
         public SelectList CompanyList { get; set; }
 
-        public int MAccountsSelectedValue { get; set; }
+        public int MonetaryAccountIndex { get; set; }
 
         [Display(Name = "My Account")]
         public SelectList MonetaryAccounts { get; set; }
