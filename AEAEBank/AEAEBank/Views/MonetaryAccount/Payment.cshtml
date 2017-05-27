@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Payment";
 }
+
+@Scripts.Render("~/bundles/jqueryval")
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -18,10 +21,10 @@
                     AccountOptions.success = function (account) {
                         
                         $('#AccountIBAN').val(account.AccountIban);
-                        //$("#CompanyName").append("<option>" + "ana" + "</option>");
+                        $('#Balance').val(account.amount);
 
                     };
-                    AccountOptions.error = function () { alert("Error in Getting States!!"); };
+                    AccountOptions.error = function () { alert("Error in Getting monetary accounts!!"); };
                     $.ajax(AccountOptions);
                 }
             });
@@ -36,17 +39,18 @@
                     CompanyOptions.datatype = "json";
                     CompanyOptions.contentType = "application/json";
                     CompanyOptions.success = function (company) {
-                        $("#CompanyName").empty();
-                        $('#CompanyName').val(company.companyName);
-                        $('#IBAN').val(company.iban);
-                        //$("#CompanyName").append("<option>" + "ana" + "</option>");
+
+                        $('#BeneficiaryName').val(company.companyName);
+                        $('#BeneficiaryIBAN').val(company.iban);
+                        $('#BeneficiaryBankName').val(company.bankName);
                         
                     };
-                    CompanyOptions.error = function () { alert("Error in Getting States!!"); };
+                    CompanyOptions.error = function () { alert("Error in Getting companies!!"); };
                     $.ajax(CompanyOptions);
                 }
             });
-       });
+        });
+
 </script>
 
 
@@ -56,7 +60,6 @@
 {
     @Html.AntiForgeryToken()
     
-
     
     <div class="form-horizontal">
 
@@ -66,22 +69,38 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyList, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CompanyList", ViewData["companies"] as SelectList, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CompanyIndex, Model.CompanyList, new { @class = "form-control", id = "CompanyList" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BeneficiaryName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("BeneficiaryName", null, new { @readOnly = "readonly" })
+                @Html.ValidationMessageFor(model => model.BeneficiaryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BeneficiaryIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("BeneficiaryIBAN", null, new { @readOnly = "readonly" })
+                @Html.ValidationMessageFor(model => model.BeneficiaryIBAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MonetaryAccounts, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(model => model.MonetaryAccountIndex, Model.MonetaryAccounts, new { @class = "form-control", id = "MonetaryAccounts" })
+               @Html.ValidationMessageFor(model => model.MonetaryAccounts, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.AccountIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("CompanyName", null, new { @readOnly = "readonly" })
-                @*@Html.ValidationMessageFor(model => model.AccountIBAN, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AccountIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextArea("IBAN", null, new { @readOnly = "readonly" })
+                @Html.TextBox("AccountIBAN", null, new { @readOnly = "readonly" })
                 @Html.ValidationMessageFor(model => model.AccountIBAN, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,7 +108,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownList("MonetaryAccounts", ViewData["accounts"] as SelectList, new { @class = "form-control" })
+                @Html.TextBox("Balance", null, new { @readOnly = "readonly" })
                 @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,32 +116,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextArea("AccountIBAN", null, new { @readOnly = "readonly" })
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", id = "amount" } })
                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BeneficiaryIBAN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BeneficiaryIBAN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BeneficiaryIBAN, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BeneficiaryName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BeneficiaryName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BeneficiaryName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.BeneficiaryBankName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BeneficiaryBankName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox("BeneficiaryBankName", null, new { @readOnly = "readonly" })
                 @Html.ValidationMessageFor(model => model.BeneficiaryBankName, "", new { @class = "text-danger" })
+                
             </div>
         </div>
 
@@ -136,7 +140,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Confirm" class="btn myButton" />
             </div>
         </div>
     </div>

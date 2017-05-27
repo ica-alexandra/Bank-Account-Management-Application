@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AEAEBank.App_Start;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,11 @@ namespace AEAEBank.Models
 {
     public class PaymentViewModel
     {
-        public PaymentViewModel() { }
+        public PaymentViewModel()
+        {
+            CompanyList = new SelectList(new List<Company>());
+            MonetaryAccounts = new SelectList(new List<MonetaryAccountModel>());
+        }
 
         public int CompanyIndex { get; set; }
 
@@ -24,12 +29,12 @@ namespace AEAEBank.Models
         [Display(Name = "My Account(IBAN)")]
         public string AccountIBAN { get; set; }
 
-        //javascript TO-DO X_X
         [Display(Name = "Account Balance")]
         public decimal Balance { get; set; }
 
         [Required]
         [Display(Name = "Payment Amount")]
+        [NumericLessThan("Balance",AllowEquality = true)]
         public decimal Amount { get; set; }
 
         [Required]

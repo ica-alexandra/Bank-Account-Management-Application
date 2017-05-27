@@ -23,5 +23,7 @@ namespace AEAEBank.DAL
         public DbSet<BankClient> BankClients { get; set; }
         public DbSet<MonetaryAccountModel> MonetaryAccount { get; set; }
         public DbSet<TransactionModel> Transaction { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Request> Requests { get; set; }
     }
 }

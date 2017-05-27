@@ -1,0 +1,18 @@
+namespace AEAEBank.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class updatedDatabase : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.TransactionModels", "Status");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.TransactionModels", "Status", c => c.Int(nullable: false));
+        }
+    }
+}

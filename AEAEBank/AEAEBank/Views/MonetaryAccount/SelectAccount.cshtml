@@ -1,0 +1,25 @@
+﻿@model AEAEBank.Models.TransactionReportViewModel
+
+@{
+    ViewBag.Title = "SelectAccount";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Select the account to view the transaction report</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(a => a.SelectedValue, Model.MonetaryAccounts)
+
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Select" />
+}
+

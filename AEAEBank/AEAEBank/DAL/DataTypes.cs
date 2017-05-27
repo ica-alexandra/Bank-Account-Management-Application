@@ -16,10 +16,4 @@ namespace AEAEBank.DAL
         Withdrawal,
         Deposit
     }
-    public enum TransactionStatus
-    {
-        Finished,
-        Pending,
-        Canceled
-    }
 }

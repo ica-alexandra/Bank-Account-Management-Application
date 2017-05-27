@@ -159,32 +159,38 @@ namespace AEAEBank.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public  ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = model.GetUser();
                 user.UserName = model.FirstName + GetCode() + model.LastName;
 
-                var result = await UserManager.CreateAsync(user, model.Password);
-                
-                idManager.AddUserToRole(user.Id, "User");
-                if (result.Succeeded)
+                if (!appDb.BankClients.Any(c => c.CNP == user.CNP))
                 {
-                    string callbackUrl = await SendEmailConfirmationToken(user.Id, "Confirm Account");
-                    return View("ConfirmEmailRegister");
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    return RedirectToAction("NotBankClient");
                 }
-                AddErrors(result);
+
+                appDb.Requests.Add(new Request(user, model.Password));
+                appDb.SaveChanges();
+
+                return RedirectToAction("AdminValidation");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult AdminValidation()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult NotBankClient()
+        {
+            return View();
         }
 
         public async Task<string> SendEmailConfirmationToken(string UserID, string subject)
@@ -527,6 +533,41 @@ namespace AEAEBank.Controllers
             }
             return View();
         }
+
+        public ActionResult Requests()
+        {
+            List<Request> requests = appDb.Requests.ToList();
+            return View(requests);
+        }
+        
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmRequest(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Request req = appDb.Requests.Find(id);
+            ApplicationUser user = req.GetUser();
+
+            var result = await UserManager.CreateAsync(user, req.UserPassword);
+            
+            if (result.Succeeded)
+            {
+                idManager.AddUserToRole(user.Id, "User");
+                string callbackUrl = await SendEmailConfirmationToken(user.Id, "Confirm Account");
+                return RedirectToAction("Requests");
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            }
+            AddErrors(result);
+            return RedirectToAction("Error");
+        }
+        
         //
         // POST: /Account/ExternalLogin
         [HttpPost]

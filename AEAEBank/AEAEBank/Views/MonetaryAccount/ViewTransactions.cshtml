@@ -1,4 +1,4 @@
-﻿@model AEAEBank.Models.TransactionReportViewModel
+﻿@model IEnumerable<AEAEBank.Models.TransactionModel>
 
 @{
     ViewBag.Title = "ViewTransactions";
@@ -6,21 +6,44 @@
 
 <h2>ViewTransactions</h2>
 
-<div>
-    <h4>TransactionReportViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SelectedValue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SelectedValue)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceIBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinationIBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SourceIBAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationIBAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back", "SelectAccount", new { @class = "btn myButton" });
+</div>

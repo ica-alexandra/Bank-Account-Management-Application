@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AEAEBank.Models.Request>
+
+@{
+    ViewBag.Title = "Requests";
+}
+
+
+<h2>Requests</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNP)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNP)
+            </td>
+            <td>
+                @Html.ActionLink("Confirm Request", "ConfirmRequest", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+    

@@ -33,9 +33,5 @@ namespace AEAEBank.Models
 
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }
-
-
-        [Display(Name = "Status")]
-        public TransactionStatus Status { get; set; }
     }
 }
