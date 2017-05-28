@@ -86,6 +86,10 @@ namespace AEAEBank.Controllers
         public ActionResult Payment()
         {
             string userCode = User.Identity.Name;
+            if (!appDb.MonetaryAccount.Any(m => m.UserId == userCode))
+            {
+                return View("Error");
+            }
             List<MonetaryAccountModel> mList = appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList();
             List<Company> comp = appDb.Companies.ToList();
             PaymentViewModel pModel = new PaymentViewModel();
@@ -130,6 +134,10 @@ namespace AEAEBank.Controllers
         {
             TransferViewModel tModel = new TransferViewModel();
             string userCode = User.Identity.Name;
+            if (!appDb.MonetaryAccount.Any(m => m.UserId == userCode))
+            {
+                return View("Error");
+            }
             tModel.MonetaryAccounts = new SelectList(appDb.MonetaryAccount.Where(m => m.UserId == userCode).ToList(), "Id", "IBAN");
             tModel.SelectedValue = Convert.ToInt32(tModel.MonetaryAccounts.FirstOrDefault().Value);
 
@@ -143,7 +151,7 @@ namespace AEAEBank.Controllers
             {
                 if (!appDb.MonetaryAccount.Any(m => m.IBAN == transferModel.BeneficiaryIBAN))
                 {
-                    return HttpNotFound();
+                    return View("Error");
                 }
                 MonetaryAccountModel source = appDb.MonetaryAccount.First(m => m.IBAN == transferModel.AccountIBAN);
                 MonetaryAccountModel destination = appDb.MonetaryAccount.First(m => m.IBAN == transferModel.BeneficiaryIBAN);
@@ -180,9 +188,9 @@ namespace AEAEBank.Controllers
 
         public ActionResult ViewTransactions(int? selectedAccountId)
         {
-            if (selectedAccountId == 0)
+            if (selectedAccountId == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             MonetaryAccountModel mAcc = appDb.MonetaryAccount.First(acc => acc.Id == selectedAccountId);
             

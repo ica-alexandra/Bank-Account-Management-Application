@@ -556,6 +556,8 @@ namespace AEAEBank.Controllers
             {
                 idManager.AddUserToRole(user.Id, "User");
                 string callbackUrl = await SendEmailConfirmationToken(user.Id, "Confirm Account");
+                appDb.Requests.Remove(req);
+                appDb.SaveChanges();
                 return RedirectToAction("Requests");
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
