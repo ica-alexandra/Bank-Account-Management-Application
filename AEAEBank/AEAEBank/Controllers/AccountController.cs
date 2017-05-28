@@ -364,22 +364,42 @@ namespace AEAEBank.Controllers
         public ActionResult Edit()
         {
             var user = appDb.Users.First(u => u.UserName == User.Identity.Name);
-            var model = new EditUserViewModel(user);
+            var model = new EditViewModel(user);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = appDb.Users.First(u => u.UserName == model.UserName);
+                // Update the user data:
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                
+                appDb.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                appDb.SaveChanges();
+                EditUserViewModel userModel = new EditUserViewModel(appDb.Users.First(a => a.UserName == user.UserName));
+                return RedirectToAction("Details", userModel);
+            }
+            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult EditUser(string id, ManageMessageId? Message = null)
+        public ActionResult EditUser(string id)
         {
             var user = appDb.Users.First(u => u.UserName == id);
             var model = new EditUserViewModel(user);
-            ViewBag.MessageId = Message;
             return View(model);
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser(EditUserViewModel model)
+        public ActionResult EditUser(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -395,7 +415,7 @@ namespace AEAEBank.Controllers
                 user.CNP = model.CNP;
                 user.Address = model.Address;
                 appDb.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                await appDb.SaveChangesAsync();
+                appDb.SaveChanges();
                 return RedirectToAction("Index");
             }
             // If we got this far, something failed, redisplay form
@@ -403,7 +423,7 @@ namespace AEAEBank.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Delete(string id = null)
+        public ActionResult Delete(string id)
         {
             var user = appDb.Users.First(u => u.UserName == id);
             var model = new EditUserViewModel(user);

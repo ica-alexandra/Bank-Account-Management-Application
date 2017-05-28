@@ -16,4 +16,9 @@ namespace AEAEBank.DAL
         Withdrawal,
         Deposit
     }
+    public enum Status
+    {
+        Blocked,
+        Unblocked
+    }
 }

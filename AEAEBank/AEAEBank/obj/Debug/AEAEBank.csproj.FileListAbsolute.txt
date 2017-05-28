@@ -502,3 +502,4 @@ C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEA
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.updatedDatabase.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.seedDatabase.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.request.resources
+C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.status.resources

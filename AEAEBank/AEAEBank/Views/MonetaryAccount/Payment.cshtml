@@ -11,7 +11,7 @@
         $(document).ready(function () {
             $('#MonetaryAccounts').change(function () {
 
-                if ($("#MonetaryAccounts").val() != "Select") {
+                if ($("#MonetaryAccounts").val() != "") {
                     var AccountOptions = {};
                     AccountOptions.url = "/MonetaryAccount/GetAccountData";
                     AccountOptions.type = "POST";
@@ -31,7 +31,7 @@
 
             $('#CompanyList').change(function () {
                 
-                if ($("#CompanyList").val() != "Select") {
+                if ($("#CompanyList").val() != "") {
                     var CompanyOptions = {};
                     CompanyOptions.url = "/MonetaryAccount/GetCompanyData";
                     CompanyOptions.type = "POST";
@@ -69,7 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyList, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CompanyIndex, Model.CompanyList, new { @class = "form-control", id = "CompanyList" })
+                @Html.DropDownListFor(model => model.CompanyIndex, Model.CompanyList, "Select", new { @class = "form-control", id = "CompanyList"})
             </div>
         </div>
 
@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MonetaryAccounts, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownListFor(model => model.MonetaryAccountIndex, Model.MonetaryAccounts, new { @class = "form-control", id = "MonetaryAccounts" })
+               @Html.DropDownListFor(model => model.MonetaryAccountIndex, Model.MonetaryAccounts, "Select", new { @class = "form-control", id = "MonetaryAccounts" })
                @Html.ValidationMessageFor(model => model.MonetaryAccounts, "", new { @class = "text-danger" })
             </div>
         </div>

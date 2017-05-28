@@ -12,8 +12,8 @@ namespace AEAEBank.Models
     {
         public TransferViewModel() { }
 
-
-        public int SelectedValue { get; set; }
+        [Required]
+        public int? SelectedValue { get; set; }
 
         public SelectList MonetaryAccounts { get; set; }
 

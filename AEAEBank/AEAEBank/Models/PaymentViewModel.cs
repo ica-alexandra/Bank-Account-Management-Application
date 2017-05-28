@@ -16,12 +16,14 @@ namespace AEAEBank.Models
             MonetaryAccounts = new SelectList(new List<MonetaryAccountModel>());
         }
 
-        public int CompanyIndex { get; set; }
+        [Required]
+        public int? CompanyIndex { get; set; }
 
         [Display(Name = "Company")]
         public SelectList CompanyList { get; set; }
 
-        public int MonetaryAccountIndex { get; set; }
+        [Required]
+        public int? MonetaryAccountIndex { get; set; }
 
         [Display(Name = "My Account")]
         public SelectList MonetaryAccounts { get; set; }

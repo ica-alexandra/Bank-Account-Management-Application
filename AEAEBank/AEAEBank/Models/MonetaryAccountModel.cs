@@ -9,7 +9,10 @@ namespace AEAEBank.Models
 {
     public class MonetaryAccountModel
     {
-        public MonetaryAccountModel() { }
+        public MonetaryAccountModel()
+        {
+            AccStatus = Status.Unblocked;
+        }
 
         [Key]
         public int Id { get; set; }
@@ -32,6 +35,6 @@ namespace AEAEBank.Models
 
         
         [Display(Name = "Status")]
-        public bool Blocked  { get; set; }
+        public Status AccStatus  { get; set; }
     }
 }

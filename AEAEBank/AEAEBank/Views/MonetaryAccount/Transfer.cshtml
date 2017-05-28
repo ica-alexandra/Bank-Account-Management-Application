@@ -9,7 +9,7 @@
         $(document).ready(function () {
             $('#MonetaryAccounts').change(function () {
 
-                if ($("#MonetaryAccounts").val() != "Select") {
+                if ($("#MonetaryAccounts").val() != "") {
                     var AccountOptions = {};
                     AccountOptions.url = "/MonetaryAccount/GetAccountData";
                     AccountOptions.type = "POST";
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MonetaryAccounts, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectedValue, Model.MonetaryAccounts, new { @class = "form-control", id = "MonetaryAccounts" })
+                @Html.DropDownListFor(model => model.SelectedValue, Model.MonetaryAccounts, "Select", new { @class = "form-control", id = "MonetaryAccounts" })
             </div>
         </div>
 

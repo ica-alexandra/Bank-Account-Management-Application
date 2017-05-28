@@ -31,10 +31,8 @@ namespace AEAEBank.Controllers
             }
 
             MonetaryAccountModel mAccount = appDb.MonetaryAccount.Find(id);
-            //;appDb.MonetaryAccount.Remove(mAccount);
-            mAccount.Blocked = status;
+            mAccount.AccStatus = (status)?Status.Blocked:Status.Unblocked;
             appDb.Entry(mAccount).State = System.Data.Entity.EntityState.Modified;
-            //appDb.MonetaryAccount.Add(mAccount);
             appDb.SaveChanges();
             return RedirectToAction("Details",mAccount);
         }
@@ -115,7 +113,10 @@ namespace AEAEBank.Controllers
                 tModel.TransactionDate = DateTime.Now;
                 MonetaryAccountModel source = appDb.MonetaryAccount.First(m => m.IBAN == payment.AccountIBAN);
                 MonetaryAccountModel destination = appDb.MonetaryAccount.First(m => m.IBAN == payment.BeneficiaryIBAN);
-
+                if ((source.AccStatus == Status.Blocked) || (destination.AccStatus == Status.Blocked))
+                {
+                    return View("InvalidAccount");
+                }
                 source.Amount -= payment.Amount;
                 destination.Amount += payment.Amount;
                 appDb.Transaction.Add(tModel);
@@ -155,7 +156,12 @@ namespace AEAEBank.Controllers
                 }
                 MonetaryAccountModel source = appDb.MonetaryAccount.First(m => m.IBAN == transferModel.AccountIBAN);
                 MonetaryAccountModel destination = appDb.MonetaryAccount.First(m => m.IBAN == transferModel.BeneficiaryIBAN);
-                
+
+                if ((source.AccStatus == Status.Blocked) || (destination.AccStatus == Status.Blocked))
+                {
+                    return View("InvalidAccount");
+                }
+
                 source.Amount -= transferModel.Amount;
                 destination.Amount += transferModel.Amount;
 

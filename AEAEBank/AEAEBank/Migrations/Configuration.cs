@@ -51,7 +51,7 @@ namespace AEAEBank.Migrations
                 Amount = 300,
                 IBAN = "1234",
                 Currency = CurrencyType.Euro,
-                Blocked = false,
+                AccStatus = Status.Unblocked,
             };
 
             MonetaryAccountModel cezAcc = new MonetaryAccountModel()
@@ -60,7 +60,7 @@ namespace AEAEBank.Migrations
                 Amount = 240,
                 IBAN = "76543218910",
                 Currency = CurrencyType.RON,
-                Blocked = false,
+                AccStatus = Status.Unblocked,
             };
 
             appDb.MonetaryAccount.Add(orangeAcc);

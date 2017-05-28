@@ -222,12 +222,17 @@
     <Compile Include="Migrations\201705272147326_request.Designer.cs">
       <DependentUpon>201705272147326_request.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705281755064_status.cs" />
+    <Compile Include="Migrations\201705281755064_status.Designer.cs">
+      <DependentUpon>201705281755064_status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppUserSearchModel.cs" />
     <Compile Include="Models\BankClient.cs" />
     <Compile Include="Models\BankClientSearchModel.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonetaryAccountModel.cs" />
@@ -343,6 +348,7 @@
     <Content Include="Views\Account\AdminValidation.cshtml" />
     <Content Include="Views\Account\Requests.cshtml" />
     <Content Include="Views\Account\NotBankClient.cshtml" />
+    <Content Include="Views\MonetaryAccount\InvalidAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705272147326_request.resx">
       <DependentUpon>201705272147326_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705281755064_status.resx">
+      <DependentUpon>201705281755064_status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
