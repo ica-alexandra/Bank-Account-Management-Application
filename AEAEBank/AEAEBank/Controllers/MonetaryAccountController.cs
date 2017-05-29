@@ -248,7 +248,7 @@ namespace AEAEBank.Controllers
             MonetaryAccountModel acc = accList.First(m => m.Id == Convert.ToInt32(accountId));
             if (acc != null)
             {
-                return Json(new { success = true, AccountIban = acc.IBAN, amount = acc.Amount });
+                return Json(new { success = true, AccountIban = acc.IBAN, amount = acc.Amount, currency = acc.Currency.ToString() });
             }
             return Json(new { success = false });
 

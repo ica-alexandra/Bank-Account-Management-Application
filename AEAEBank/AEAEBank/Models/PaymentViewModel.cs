@@ -1,4 +1,5 @@
 ﻿using AEAEBank.App_Start;
+using AEAEBank.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -53,5 +54,8 @@ namespace AEAEBank.Models
         
         [Display(Name = "Invoice Number(Bill Code)")]
         public string Invoice { get; set; }
+
+        [Display(Name = "Currency")]
+        public CurrencyType Currency { get; set; }
     }
 }

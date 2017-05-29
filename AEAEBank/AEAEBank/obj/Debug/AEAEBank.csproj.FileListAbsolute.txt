@@ -495,11 +495,11 @@ C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.initialcrea
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.dll
 C:\Users\Emi\Desktop\AEAEBank\AEAEBank\obj\Debug\AEAEBank.pdb
-C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.companyCreate.resources
-C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.companies.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.updatedDatabase.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.seedDatabase.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.request.resources
 C:\Users\diaco\Documents\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.status.resources
+C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.Migrations.newdata.resources
+C:\Users\Alexandra\Desktop\GitHub\Bank-Account-Management-Application\AEAEBank\AEAEBank\obj\Debug\AEAEBank.csproj.GenerateResource.Cache

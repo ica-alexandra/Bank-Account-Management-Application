@@ -95,6 +95,7 @@ namespace AEAEBank.Migrations
                 Email = "Angela.Powell@mail.com",
             };
 
+
             appDb.BankClients.Add(ion);
             appDb.BankClients.Add(peter);
             appDb.BankClients.Add(angela);

@@ -18,12 +18,19 @@ namespace AEAEBank.Controllers
     public class AccountController : Controller
     {
         ApplicationDbContext appDb = new ApplicationDbContext();
+        List<ApplicationUser> users = new List<ApplicationUser>();
+        List<BankClient> bClients = new List<BankClient>();
+        List<Company> companies = new List<Company>();
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IdentityManager idManager = new IdentityManager();
 
         public AccountController()
+        {
+        }
+
+        public AccountController(List<ApplicationUser> users)
         {
         }
 
@@ -373,12 +380,11 @@ namespace AEAEBank.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = appDb.Users.First(u => u.UserName == model.UserName);
+                var user = appDb.Users.First(u => u.UserName == User.Identity.Name);
                 // Update the user data:
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
-                user.UserName = model.UserName;
                 
                 appDb.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 appDb.SaveChanges();
@@ -408,7 +414,6 @@ namespace AEAEBank.Controllers
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
-                user.UserName = model.UserName;
                 user.IDCardSeries = model.IDCardSeries;
                 user.IDCardNumber = model.IDCardNumber;
                 user.TelephoneNumber = model.TelephoneNumber;

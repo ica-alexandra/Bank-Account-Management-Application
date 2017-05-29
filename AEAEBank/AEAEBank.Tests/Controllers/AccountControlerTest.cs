@@ -4,12 +4,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using AEAEBank.Models;
 using System.Threading.Tasks;
+using AEAEBank.DAL;
 
 namespace AEAEBank.Controllers.Tests
 {
     [TestClass()]
     public class AccountControlerTest
     {
+        public ApplicationDbContext appDb = new ApplicationDbContext();
+
         [TestMethod()]
         public void LoginTest()
         {
@@ -34,15 +37,6 @@ namespace AEAEBank.Controllers.Tests
         {
             AccountController controller = new AccountController();
             ViewResult result = controller.Register() as ViewResult;
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod()]
-        public void RegisterTest1()
-        {
-            AccountController controller = new AccountController();
-            RegisterViewModel model = new RegisterViewModel();
-            Task<ActionResult> result = controller.Register(model);
             Assert.IsNotNull(result);
         }
 

@@ -184,8 +184,7 @@ namespace AEAEBank.Models
                 this.LastName = user.LastName;
                 this.Email = user.Email;
             }
-
-            [Required]
+        
             public string UserName { get; set; }
 
             [Required]

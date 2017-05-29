@@ -1,4 +1,5 @@
 ﻿using AEAEBank.App_Start;
+using AEAEBank.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,5 +34,8 @@ namespace AEAEBank.Models
         [Required]
         [Display(Name = "IBAN Beneficiary")]
         public string BeneficiaryIBAN { get; set; }
+
+        [Display(Name = "Currency")]
+        public CurrencyType Currency { get; set; }
     }
 }

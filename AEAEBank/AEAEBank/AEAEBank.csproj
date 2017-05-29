@@ -206,25 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705250634358_companies.cs" />
-    <Compile Include="Migrations\201705250634358_companies.Designer.cs">
-      <DependentUpon>201705250634358_companies.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705271909040_updatedDatabase.cs" />
-    <Compile Include="Migrations\201705271909040_updatedDatabase.Designer.cs">
-      <DependentUpon>201705271909040_updatedDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705272115570_seedDatabase.cs" />
-    <Compile Include="Migrations\201705272115570_seedDatabase.Designer.cs">
-      <DependentUpon>201705272115570_seedDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705272147326_request.cs" />
-    <Compile Include="Migrations\201705272147326_request.Designer.cs">
-      <DependentUpon>201705272147326_request.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705281755064_status.cs" />
-    <Compile Include="Migrations\201705281755064_status.Designer.cs">
-      <DependentUpon>201705281755064_status.cs</DependentUpon>
+    <Compile Include="Migrations\201705290628162_newdata.cs" />
+    <Compile Include="Migrations\201705290628162_newdata.Designer.cs">
+      <DependentUpon>201705290628162_newdata.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -362,20 +346,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705250634358_companies.resx">
-      <DependentUpon>201705250634358_companies.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705271909040_updatedDatabase.resx">
-      <DependentUpon>201705271909040_updatedDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705272115570_seedDatabase.resx">
-      <DependentUpon>201705272115570_seedDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705272147326_request.resx">
-      <DependentUpon>201705272147326_request.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705281755064_status.resx">
-      <DependentUpon>201705281755064_status.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705290628162_newdata.resx">
+      <DependentUpon>201705290628162_newdata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

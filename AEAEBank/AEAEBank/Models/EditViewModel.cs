@@ -13,14 +13,10 @@ namespace AEAEBank.Models
         // Allow Initialization with an instance of ApplicationUser:
         public EditViewModel(ApplicationUser user)
         {
-            this.UserName = user.UserName;
             this.FirstName = user.FirstName;
             this.LastName = user.LastName;
             this.Email = user.Email;
         }
-
-        [Required]
-        public string UserName { get; set; }
 
         [Required]
         [Display(Name = "First Name")]

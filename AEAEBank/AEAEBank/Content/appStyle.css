@@ -60,6 +60,10 @@
     color: #b1ab06;
 }
 
+.myButton:visited{
+    color: white;
+}
+
 /* make sidebar nav vertical */
 @media (min-width: 768px) {
     .sidebar-nav {
@@ -86,6 +90,10 @@
             padding-top: 12px;
             padding-bottom: 12px;
         }
+
+        .sidebar-nav .navbar li a:visited {
+            color: white;
+        }
 }
 a.myButton{
     color:white;
@@ -110,3 +118,11 @@ a.myButton{
     text-decoration: none;
 }
 
+input{
+    border: none;
+}
+
+
+.hiddenEdit{
+    display: none;
+}
